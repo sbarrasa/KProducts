@@ -11,11 +11,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class ProductRegistryTest{
-    @Test
-    fun contains(){
-        assertTrue("TC" in ProductRegistry)
-    }
-
     @BeforeEach
     fun init(){
         ProductRegistry
@@ -25,6 +20,19 @@ class ProductRegistryTest{
             .register(DebitCard)
 
     }
+
+    @Test
+    fun containsProductType(){
+        assertTrue("TC" in ProductRegistry)
+        assertFalse("casa" in ProductRegistry)
+    }
+
+    @Test
+    fun containsProductClass(){
+        assertTrue(SavingAccount::class in ProductRegistry)
+        assertFalse(Product::class in ProductRegistry)
+    }
+
 
     @Test
     fun unknownProductType() {
