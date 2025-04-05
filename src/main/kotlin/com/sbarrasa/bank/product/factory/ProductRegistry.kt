@@ -2,6 +2,7 @@ package com.sbarrasa.bank.product.factory
 
 import com.sbarrasa.bank.product.Product
 import kotlin.reflect.KClass
+import kotlin.reflect.full.isSubclassOf
 
 typealias ProductCreator<T> = () -> T
 
@@ -31,4 +32,13 @@ object ProductRegistry {
             ?: throw ProductTypeNotRegistered(productType)
         return creator.invoke() as T
     }
+
+    fun getProductClasses(): Set<KClass<out Product>> =
+        classes.values.toSet()
+
+    fun getProductClasses(type: KClass<*>): Set<KClass<out Product>> =
+        classes.values
+            .filter { it.isSubclassOf(type) }
+            .map { it }
+            .toSet()
 }
