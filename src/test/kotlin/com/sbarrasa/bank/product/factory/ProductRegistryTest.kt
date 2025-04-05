@@ -14,7 +14,7 @@ class ProductRegistryTest{
     @BeforeEach
     fun init(){
         ProductRegistry
-            .register(SavingAccount)
+            .register("CC", ::SavingAccount)
             .register(CheckingAccount)
             .register(CreditCard)
             .register(DebitCard)

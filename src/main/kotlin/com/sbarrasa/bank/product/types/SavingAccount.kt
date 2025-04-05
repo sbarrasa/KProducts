@@ -8,6 +8,5 @@ class SavingAccount: Account(SavingAccount), CreditProduct {
     companion object: ProductRegister<SavingAccount> {
         override val productType = "CC"
         override val name = "Cuenta corriente"
-        override val creator = ::SavingAccount
     }
 }

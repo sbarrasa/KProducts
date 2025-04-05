@@ -12,8 +12,11 @@ object ProductRegistry {
     operator fun contains(productType: String) = creators.containsKey(productType)
     operator fun contains(productClass: KClass<out Product>) = productClass in classes.values
 
-    fun <T : Product> register(productRegister: ProductRegister<T>) =
-        register(productRegister.productType, productRegister.creator)
+    fun <T : Product> register(productRegister: ProductRegister<T>): ProductRegistry {
+        classes[productRegister.productType] = productRegister.productClass()
+        creators[productRegister.productType] = productRegister.creator()
+        return this
+    }
 
 
     fun <T : Product> register(productType: String, creator: ProductCreator<T>): ProductRegistry {

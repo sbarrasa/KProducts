@@ -13,6 +13,5 @@ class CreditCard: Card(CreditCard),
     companion object: ProductRegister<CreditCard> {
         override val productType = "TC"
         override val name = "Tarjeta de crédito"
-        override val creator = ::CreditCard
     }
 }
