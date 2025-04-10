@@ -48,7 +48,6 @@ class NameTest {
     fun formattedStandard() {
         val name = Name("Juan Carlos Perez")
         assertEquals("Perez, Juan", name.standardFormat())
-        assertEquals("Perez, Juan", name.formatted())
     }
 
     @Test
@@ -60,7 +59,7 @@ class NameTest {
     @Test
     fun formated(){
         val name = Name("Juan Carlos Perez")
-        assertEquals("Carlos Perez", name.formatted("${name[2]} ${name[3]}"))
+        assertEquals("Carlos Perez", "${name[2]} ${name[3]}")
 
     }
 

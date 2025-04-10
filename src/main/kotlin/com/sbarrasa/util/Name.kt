@@ -47,8 +47,6 @@ class Name {
     val size: Int
         get() = list.size
 
-    fun formatted(template: String = standardFormat()) = template
-
     fun standardFormat() = "$last, $first"
 
     fun fullFormat() = list.joinToString(" ")
