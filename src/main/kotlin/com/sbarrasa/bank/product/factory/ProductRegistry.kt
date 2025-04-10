@@ -39,6 +39,5 @@ object ProductRegistry {
     fun getProductClasses(type: KClass<*>): Set<KClass<out Product>> =
         classes.values
             .filter { it.isSubclassOf(type) }
-            .map { it }
             .toSet()
 }
