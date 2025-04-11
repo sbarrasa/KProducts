@@ -1,57 +1,50 @@
 package com.sbarrasa.util
 
 class Name {
-    private val list = ArrayList<String>()
+    val names = ArrayList<String>()
+    val lastNames = ArrayList<String>()
 
     constructor()
 
-    constructor(first: String, last: String = "") {
-        this.first = first
-        this.last = last
+    constructor(names: String, lastNames: String = "") {
+        this.names.addAll(split(names))
+        this.lastNames.addAll(split(lastNames))
     }
 
     constructor(fullName: String) {
-        list.addAll(split(fullName))
+        val parts = split(fullName)
+        if (parts.isNotEmpty()) {
+            lastNames.add(parts.last())
+            names.addAll(parts.dropLast(1))
+        }
     }
 
     private fun split(value: String) = value.trim().split("\\s+".toRegex())
 
-    operator fun get(index: Int): String = list.getOrElse(index - 1) { "" }
+    val first: String
+        get() = names.get(0)
 
-    operator fun set(index: Int, value: String) {
-        val oneName = getOne(value)
+    val last: String
+        get() = lastNames.joinToString(" ")
 
-        while (list.size < index) {
-            list.add("")
-        }
-        list[index - 1] = oneName
-    }
-
-    private fun getOne(value: String) = split(value).firstOrNull() ?: ""
-
-    var first: String
-        get() = get(1)
-        set(value) = set(1, value)
-
-    var last: String
-        get() = list.takeLast(lastCnt).joinToString(" ")
-        set(value) {
-            val parts = split(value)
-            lastCnt = parts.size
-            list.dropLast(lastCnt)
-            list.addAll(parts)
-        }
-
-    var lastCnt = 1
 
     val size: Int
-        get() = list.size
+        get() = names.size + lastNames.size
+
+    operator fun get(index: Int) = fullName().get(index-1)
+
+    fun fullName() = names + lastNames
 
     fun standardFormat() = "$last, $first"
 
-    fun fullFormat() = list.joinToString(" ")
+    fun lastNamesFormat() = lastNames.joinToString(" ")
+
+    fun onlyNamesFormat() = names.joinToString(" ")
+
+    fun fullNameFormat() = "${onlyNamesFormat()} ${lastNamesFormat()}"
+
 
     override fun toString(): String {
-        return fullFormat()
+        return fullNameFormat()
     }
 }

@@ -1,8 +1,6 @@
 package com.sbarrasa.bank.product
 
-import com.sbarrasa.bank.product.types.CheckingAccount
-import com.sbarrasa.bank.product.types.CreditCard
-import com.sbarrasa.bank.product.types.DebitCard
+import com.sbarrasa.bank.product.types.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -45,6 +43,15 @@ class ProductTest {
         assertFalse(product.isCreditProduct)
         assertEquals("${CheckingAccount.name} en null", product.description())
 
+    }
+
+    @Test
+    fun isProduct(){
+        val creditCard = CreditCard().apply { branch = Branch.VISA}
+        assertTrue(creditCard is CreditProduct)
+        assertFalse(creditCard is Account)
+        assertTrue(creditCard is Product)
+        assertTrue(creditCard is Card)
     }
 
 }

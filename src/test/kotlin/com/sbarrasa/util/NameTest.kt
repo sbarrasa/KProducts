@@ -7,27 +7,10 @@ import org.junit.jupiter.api.Assertions.*
 class NameTest {
     @Test
     fun getFirstLast() {
-        val name = Name(first = "Juan", last = "Perez")
+        val name = Name(names = "Juan Carlos", lastNames = "Perez Gomez")
         assertEquals("Juan", name.first)
-        assertEquals("Perez", name.last)
+        assertEquals("Perez Gomez", name.last)
 
-    }
-
-    @Test
-    fun add() {
-        val name = Name()
-        name[1] = "Juan"
-        name[3] = "Perez"
-
-        assertEquals("Juan", name.first)
-        assertEquals("Perez", name.last)
-    }
-
-    @Test
-    fun first() {
-        val name = Name()
-        name.first = "Juan"
-        assertEquals("Juan", name.first)
     }
 
     @Test
@@ -51,9 +34,9 @@ class NameTest {
     }
 
     @Test
-    fun getFullName() {
+    fun fullNameFormat() {
         val name = Name("Juan Carlos Perez")
-        assertEquals("Juan Carlos Perez", name.fullFormat())
+        assertEquals("Juan Carlos Perez", name.fullNameFormat())
     }
 
     @Test
@@ -64,41 +47,46 @@ class NameTest {
     }
 
     @Test
-    fun doubleLastName(){
-        val name = Name(first= "Juan", last = "Perez García")
-        assertEquals("Juan", name.first)
-        assertEquals("Perez García", name.last)
-        assertEquals(2, name.lastCnt)
-        name.lastCnt = 1
-        assertEquals("García", name.last)
+    fun onlyNamesFormat(){
+        val name = Name("Juan Carlos Perez")
+        assertEquals("Juan Carlos", name.onlyNamesFormat())
     }
 
     @Test
-    fun one() {
-        val  name = Name( first = "Juan Carlos", last= "Perez")
+    fun lasteNamesFormat(){
+        val name = Name("Juan Carlos Perez")
+        assertEquals("Perez", name.lastNamesFormat())
+
+        val name2 = Name(names = "Juan Carlos", lastNames = "Perez Lopez")
+
+
+    }
+
+
+    @Test
+    fun doubleLastName(){
+        val name = Name(names = "Juan Carlos", lastNames = "Perez García")
         assertEquals("Juan", name.first)
-        assertEquals(2, name.size)
+        assertEquals("Perez García", name.last)
+    }
+
+    @Test
+    fun firstAndLast() {
+        val  name = Name( names = "Juan Carlos", lastNames = "Perez")
+        assertEquals("Juan", name.first)
+        assertEquals(3, name.size)
     }
 
     @Test
     fun noLast(){
-        val  name = Name( first = "Juan")
+        val  name = Name( names = "Juan")
         assertEquals("", name.last)
     }
 
-    @Test
-    fun nNames(){
-        val name = Name()
-        name[1] = "Juan"
-        name[3] = "Gabriel"
-        name[8] = "Otro"
-
-        assertEquals(8, name.size)
-    }
 
     @Test
     fun interpolation(){
-        val name = Name(first = "Juan", last = "Perez Lopez")
+        val name = Name(names = "Juan", lastNames = "Perez Lopez")
         assertEquals("Juan Perez Lopez", "$name")
     }
 
