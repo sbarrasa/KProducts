@@ -41,7 +41,7 @@ class ProductRegistryTest{
     fun invalidCastProductType() {
         assertThrows<ClassCastException> {
             val product: SavingAccount = ProductRegistry.create("TC")
-            assertTrue(product.isCreditProduct)
+            assertTrue(product is CreditProduct)
         }
 
     }

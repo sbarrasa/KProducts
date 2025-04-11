@@ -9,7 +9,7 @@ class ProductTest {
     fun creditCardProduct() {
         val product = CreditCard().apply { branch = Branch.VISA}
 
-        assertTrue(product.isCreditProduct)
+        assertTrue(product is CreditProduct)
         assertEquals(CreditCard.productType, product.productType)
         assertEquals(Branch.VISA, product.branch)
         assertEquals("${CreditCard.name} ${product.branch?.description}", product.description())
@@ -22,7 +22,7 @@ class ProductTest {
     @Test
     fun debitCard() {
         val product = DebitCard().apply { branch = Branch.MC}
-        assertFalse(product.isCreditProduct)
+        assertFalse(product is CreditProduct)
         assertEquals(DebitCard.productType, product.productType)
         assertEquals(Branch.MC, product.branch)
 
@@ -31,7 +31,7 @@ class ProductTest {
     @Test
     fun checkingAccount() {
         val product = CheckingAccount().apply { cbu="1234"; currency = Currency.USD}
-        assertFalse(product.isCreditProduct)
+        assertFalse(product is CreditProduct)
         assertEquals(CheckingAccount.productType, product.productType)
         assertEquals("${CheckingAccount.name} en ${Currency.USD.description}", product.description())
 
@@ -40,7 +40,7 @@ class ProductTest {
     @Test
     fun incompleteProduct() {
         val product = CheckingAccount()
-        assertFalse(product.isCreditProduct)
+        assertFalse(product is CreditProduct)
         assertEquals("${CheckingAccount.name} en null", product.description())
 
     }
