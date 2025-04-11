@@ -37,11 +37,11 @@ class ProductRegistryTest{
 
     }
 
+    @Suppress("UNUSED_VARIABLE")
     @Test
     fun invalidCastProductType() {
         assertThrows<ClassCastException> {
             val product: SavingAccount = ProductRegistry.create("TC")
-            assertTrue(product is CreditProduct)
         }
 
     }

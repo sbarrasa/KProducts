@@ -58,6 +58,7 @@ class NameTest {
         assertEquals("Perez", name.lastNamesFormat())
 
         val name2 = Name(names = "Juan Carlos", lastNames = "Perez Lopez")
+        assertEquals("Perez Lopez", name2.lastNamesFormat())
 
 
     }
