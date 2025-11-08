@@ -2,7 +2,6 @@ package com.sbarrasa.bank.product.types
 
 import com.sbarrasa.bank.product.Branch
 import com.sbarrasa.bank.product.Product
-import com.sbarrasa.bank.product.ProductHeader
 import java.time.LocalDate
 
 abstract class Card(header: ProductHeader): Product(header) {

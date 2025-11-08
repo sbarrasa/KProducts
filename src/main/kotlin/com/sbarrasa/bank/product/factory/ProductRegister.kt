@@ -1,7 +1,7 @@
 package com.sbarrasa.bank.product.factory
 
 import com.sbarrasa.bank.product.Product
-import com.sbarrasa.bank.product.ProductHeader
+import com.sbarrasa.bank.product.types.ProductHeader
 import kotlin.reflect.KClass
 
 @Suppress("UNCHECKED_CAST")

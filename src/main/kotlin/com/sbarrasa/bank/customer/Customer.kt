@@ -1,4 +1,4 @@
-package com.sbarrasa.bank.product.customer
+package com.sbarrasa.bank.customer
 
 import com.sbarrasa.util.Name
 
