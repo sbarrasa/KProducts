@@ -1,4 +1,4 @@
-package com.sbarrasa.bank.product.types
+package com.sbarrasa.bank.product
 
 interface ProductHeader {
     val productType: String
